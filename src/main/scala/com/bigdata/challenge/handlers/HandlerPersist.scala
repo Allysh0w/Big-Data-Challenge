@@ -7,7 +7,7 @@ import com.bigdata.challenge.settings.Settings.mapDB
 trait HandlerPersist extends LazyLogging {
 
   protected def persistenceInfo(user: String, url: String) = {
-    mapDB += (user -> url)
+    mapDB.addBinding(user, url)
     HttpResponse(StatusCodes.OK)
   }
 
