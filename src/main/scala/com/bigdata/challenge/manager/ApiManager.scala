@@ -6,6 +6,7 @@ import akka.http.scaladsl.model.{HttpRequest, HttpResponse}
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.Flow
 import com.typesafe.scalalogging.LazyLogging
+import org.apache.spark.sql.SparkSession
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
@@ -26,4 +27,5 @@ trait ApiManager extends LazyLogging {
     }
     api
   }
+
 }
