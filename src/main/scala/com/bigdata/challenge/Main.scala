@@ -24,6 +24,7 @@ object Main
   startTest()
 
   private def startTest() = {
+    val driver = "org.postgresql.Driver"
     val sparkSession = SparkSession
       .builder()
       .appName("test")
@@ -32,12 +33,12 @@ object Main
 
     val jdbcDF = sparkSession.read
       .format("jdbc")
+      .option("driver", driver)
       .option("url", "jdbc:postgresql://172.16.2.233:5430/batata")
-      .option("dbtable", "schema.testurl")
+      .option("dbtable", "testurl")
       .option("user", "postgres")
       .option("password", "qwe123")
       .load()
-
-
+      .show()
   }
 }
