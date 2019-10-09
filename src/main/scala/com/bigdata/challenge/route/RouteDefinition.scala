@@ -28,14 +28,16 @@ trait RouteDefinition
       path(Segments) { url: List[String] =>
         post {
           entity(as[User]) { user =>
-            if (url.last == "view") complete(persistenceInfo(user.user, url.dropRight(1).mkString("/"))) else complete(HttpResponse(StatusCodes.NotFound))
+            //if (url.last == "view") complete(persistenceInfo(user.user, url.dropRight(1).mkString("/"))) else complete(HttpResponse(StatusCodes.NotFound))
+            complete("ok")
           }
         }
       } ~
         path(Segments) { url: List[String] =>
           get {
             //todo return list of all similar documents
-            if (url.last == "similar") complete(writePretty(calcSimilarity(url.head))) else complete(HttpResponse(StatusCodes.NotFound))
+           // if (url.last == "similar") complete(writePretty(calcSimilarity(url.head))) else complete(HttpResponse(StatusCodes.NotFound))
+            complete("ok")
           }
         } ~
         pathEndOrSingleSlash {

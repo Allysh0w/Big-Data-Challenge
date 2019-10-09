@@ -11,17 +11,17 @@ import com.github.vickumar1981.stringdistance.impl.{ConstantGap, LinearGap}
 
 trait SimilarityHandler extends LazyLogging {
 
-  protected def calcSimilarity(textInput: String) = {
-   // val similarityString: Double = Jaccard.score("hello", "ctred", 1)
-    val texts = for {
-      (k, v) <- Settings.mapDB
-      url <- v
-    } yield  SimilarityText(url, Jaccard.score(textInput, url, 1))
-    texts.toList.foreach(x => println(x.url))
-    println("Size db =>" + Settings.mapDB.size)
-    texts.toList.sortBy(_.score).reverse.take(10)
-
-    //HttpResponse(StatusCodes.OK)
-  }
+//  protected def calcSimilarity(textInput: String) = {
+//   // val similarityString: Double = Jaccard.score("hello", "ctred", 1)
+//    val texts = for {
+//      (k, v) <- Settings.mapDB
+//      url <- v
+//    } yield  SimilarityText(url, Jaccard.score(textInput, url, 1))
+//    texts.toList.foreach(x => println(x.url))
+//    println("Size db =>" + Settings.mapDB.size)
+//    texts.toList.sortBy(_.score).reverse.take(10)
+//
+//    //HttpResponse(StatusCodes.OK)
+//  }
 
 }
