@@ -13,15 +13,21 @@ import org.apache.log4j._
 import scala.io.Source
 import java.nio.charset.CodingErrorAction
 
+import com.bigdata.challenge.handlers.SimilarityHandler
 import com.bigdata.challenge.helpers.{FileHelper, StoreHelper}
+import com.bigdata.challenge.settings.Settings
 import com.bigdata.challenge.settings.Settings._
 import org.apache.spark.rdd.RDD
 
 import scala.io.Codec
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.json4s.DefaultFormats
 
 import scala.math.sqrt
 import scala.concurrent.ExecutionContext
+
+import org.json4s._
+import org.json4s.jackson.JsonMethods._
 
 
 object Main
@@ -30,26 +36,21 @@ object Main
     with RouteDefinition
     with LazyLogging
 with FileHelper
-with StoreHelper{
+with StoreHelper
+with SimilarityHandler {
+
+  implicit val formats = DefaultFormats
+
 
   implicit val system = ActorSystem()
   implicit val mat = ActorMaterializer()
   implicit val ec = system.dispatcher
 
-  //startServer(route, "localhost",8080)
+  //startServer(route, Settings.apiHost,Settings.apiPort)
   //INSERT INTO testurl (user_name, links) VALUES ('user1',ARRAY['test']) ON CONFLICT(user_name) DO UPDATE SET links = testurl.links || ARRAY ['test']
 
-  createStorageMap("user1", "1")
-  createStorageMap("user1", "2")
-  createStorageMap("user1", "3")
-  createStorageMap("user2", "1")
-  createStorageMap("user2", "2")
-  createStorageMap("user2", "4")
-  createStorageMap("user3", "1")
-   createStorageMap("user3", "2")
-  createStorageMap("user3", "5")
-  createStorageMap("user2", "2")
-  createStorageMap("user2", "2")
+  runSimilarity
+
 
 
 

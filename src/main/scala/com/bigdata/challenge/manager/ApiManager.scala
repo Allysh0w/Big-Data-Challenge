@@ -22,7 +22,7 @@ trait ApiManager extends LazyLogging {
     val api = Http().bindAndHandle(route, httpHost, httpPort)
 
     api.onComplete {
-      case Success(_) => logger.info("API initialized")
+      case Success(_) => logger.info(s"API initialized on port ${httpPort}")
       case Failure(_) => logger.info("Unknown error while initializing API")
     }
     api

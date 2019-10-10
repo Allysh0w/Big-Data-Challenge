@@ -24,7 +24,10 @@ libraryDependencies ++= Seq(
   "org.apache.spark"                %  "spark-mllib_2.12"  % "2.4.4"exclude("org.slf4j", "slf4j-log4j12"),
   "org.scala-lang"                  %   "scala-library"       % "2.12.8",
   "org.scala-lang.modules"           %% "scala-xml"         % "1.2.0",
-  "org.postgresql"                  % "postgresql"         % "42.2.8"
+  "org.tpolecat" %% "doobie-core"      % "0.7.0",
+  "org.tpolecat" %% "doobie-postgres"  % "0.7.0"
+
+
 )
 dependencyOverrides ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7"

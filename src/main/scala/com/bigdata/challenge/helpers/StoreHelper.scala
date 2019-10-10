@@ -1,35 +1,51 @@
 package com.bigdata.challenge.helpers
-import com.bigdata.challenge.settings.Settings._
-import com.bigdata.challenge.model.Contracts.{RelationModel, UrlsModel}
 
-import scala.collection.mutable
+import akka.http.scaladsl.model.{HttpResponse, StatusCodes}
+import com.bigdata.challenge.manager.DatabaseManager
+import com.bigdata.challenge.model.Contracts.UserInfo
+import doobie.implicits._
+import doobie.util.update.Update0
 
-trait StoreHelper {
+trait StoreHelper extends DatabaseManager {
 
-//  protected def createStorageMap(mapStorage: Map[String,Int],
-//                                 models: (UrlsModel,RelationModel)) = {
-//
-//    mapStorage
-//  }
+  private def insertUser(userInfo: UserInfo) =
+    sql"insert into user_access (user_name) values (${userInfo.userName}) on conflict do nothing".update
 
-  protected def createStorageMap(userName: String, urlName:String) = {
+  private def insertUrlViewed(userInfo: UserInfo): Update0 =
+    sql"INSERT INTO url_access (link) values (${userInfo.url}) on conflict do nothing".update
 
-    // ._1 = userStorage, ._2 = urlsStorage
-    if (!mapDB._1.contains(userName)) { // check user storage
-      println("Aquii")
-      mapDB._1 ++  mutable.Map( userName -> prymaryKeyUserStorageMap)
-      prymaryKeyUrlStorageMap += 1
-    }
-    if(!mapDB._2.contains(urlName)){ // check urls storage
-      mapDB._2 ++ mutable.Map(urlName -> prymaryKeyUrlStorageMap)
-      prymaryKeyUrlStorageMap += 1
-    }
-    println(mapDB)
-    mapDB
-    }
-
-  protected def ClearStorageMap(mapStorage: Map[String,Int]) = {
-    mapStorage.empty
+  private def selectUserId(user: UserInfo) = {
+    sql"select id from user_access WHERE user_name = ${user.userName}"
+      .query[Int]
+      .to[List]
+      .transact(transactorManager)
+      .unsafeRunSync
+      .take(1)
   }
+
+  private def selectUrlId(user: UserInfo) = {
+    sql"select id from url_access WHERE link = ${user.url}"
+      .query[Int]
+      .to[List]
+      .transact(transactorManager)
+      .unsafeRunSync
+      .take(1)
+  }
+
+
+  private def insertRelationUrlViewed(idUser: Int, idUrl:Int): Update0 =
+    sql"INSERT INTO url_relation (id_user, id_url, rating) values ($idUser,$idUrl,1.0) on conflict do nothing".update
+
+  protected def persistData(userInfo: UserInfo) = {
+
+    insertUser(userInfo).run.transact(transactorManager).unsafeRunSync
+    val userId = selectUserId(userInfo)
+    insertUrlViewed(userInfo).run.transact(transactorManager).unsafeRunSync
+    val urlId = selectUrlId(userInfo)
+    insertRelationUrlViewed(userId.head, urlId.head).run.transact(transactorManager).unsafeRunSync
+    HttpResponse(StatusCodes.OK)
+
+  }
+
 
 }

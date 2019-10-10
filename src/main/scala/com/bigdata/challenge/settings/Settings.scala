@@ -5,9 +5,11 @@ import scala.collection.mutable
 
 trait Settings {
 
-//  var mapDB: Map[String, String] = Map[String,String]()
-  var mapDB: (mutable.Map[String,Int], mutable.Map[String,Int]) = (mutable.Map[String,Int], mutable.Map[String,Int])
-  var prymaryKeyUserStorageMap: Int = 1
-  var prymaryKeyUrlStorageMap: Int = 1
+
+  val apiHost = "localhost"
+  val apiPort = 8080
+  val relationDatasetPath = "datasets/relationDataset.csv"
+  val urlDatasetPath = "datasets/urlsDataset.csv"
+
 }
 object Settings extends Settings
