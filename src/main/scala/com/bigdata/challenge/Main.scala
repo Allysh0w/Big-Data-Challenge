@@ -13,19 +13,19 @@ import org.apache.log4j._
 import scala.io.Source
 import java.nio.charset.CodingErrorAction
 
-import com.bigdata.challenge.handlers.SimilarityHandler
+import com.bigdata.challenge.handlers.SimilarityEngineHandler
 import com.bigdata.challenge.helpers.{FileHelper, StoreHelper}
 import com.bigdata.challenge.settings.Settings
 import com.bigdata.challenge.settings.Settings._
 import org.apache.spark.rdd.RDD
 
+import org.json4s.native.Serialization.write
 import scala.io.Codec
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.json4s.DefaultFormats
 
 import scala.math.sqrt
 import scala.concurrent.ExecutionContext
-
 import org.json4s._
 import org.json4s.jackson.JsonMethods._
 
@@ -37,10 +37,9 @@ object Main
     with LazyLogging
 with FileHelper
 with StoreHelper
-with SimilarityHandler {
+with SimilarityEngineHandler {
 
   implicit val formats = DefaultFormats
-
 
   implicit val system = ActorSystem()
   implicit val mat = ActorMaterializer()
@@ -49,7 +48,10 @@ with SimilarityHandler {
   //startServer(route, Settings.apiHost,Settings.apiPort)
   //INSERT INTO testurl (user_name, links) VALUES ('user1',ARRAY['test']) ON CONFLICT(user_name) DO UPDATE SET links = testurl.links || ARRAY ['test']
 
-  runSimilarity
+  //testRun(2)
+
+  computeSimilarity(2).map(x => println(write(x)))
+
 
 
 

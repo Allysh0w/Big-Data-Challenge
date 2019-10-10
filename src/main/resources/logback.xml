@@ -11,6 +11,8 @@
 
     <logger name="akka" level="info"/>
     <logger name="com.stone" level="info"/>
+    <logger name="com.apache.spark" level="error"/>
+    <logger name="org.spark-project" level="error"/>
 
     <root level="error">
     <appender-ref ref="console"/>

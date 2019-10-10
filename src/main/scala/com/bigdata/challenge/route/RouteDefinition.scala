@@ -7,7 +7,6 @@ import akka.http.scaladsl.model.{HttpResponse, StatusCodes}
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import com.bigdata.challenge.serializers.UserJsonSupport
-import com.bigdata.challenge.handlers.SimilarityHandler
 import com.bigdata.challenge.helpers.{DatasetHelper, FileHelper, StoreHelper}
 import com.bigdata.challenge.model.Contracts.{User, UserInfo}
 import com.bigdata.challenge.settings.Settings
@@ -20,7 +19,6 @@ import scala.concurrent.ExecutionContext
 
 trait RouteDefinition
   extends UserJsonSupport
-    with SimilarityHandler
     with StoreHelper
     with DatasetHelper{
 
