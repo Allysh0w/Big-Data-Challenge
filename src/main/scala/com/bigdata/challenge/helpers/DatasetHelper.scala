@@ -7,7 +7,7 @@ import doobie.implicits._
 
 trait DatasetHelper extends LazyLogging with DatabaseManager with FileHelper{
 
-  private def createUrlDataset = {
+  private def createUrlDataset: List[UrlModelDataset] = {
     sql"SELECT id, link FROM url_access"
       .query[UrlModelDataset]
       .to[List]
@@ -15,7 +15,7 @@ trait DatasetHelper extends LazyLogging with DatabaseManager with FileHelper{
       .unsafeRunSync
   }
 
-  private def createRelationDataset = {
+  private def createRelationDataset: List[RelationUrlModelDataset] = {
     sql"""SELECT u.id AS idUser, l.id as idUrl, r.rating
          FROM url_access as l
          INNER JOIN url_relation as r on l.id = r.id_url
@@ -29,7 +29,11 @@ trait DatasetHelper extends LazyLogging with DatabaseManager with FileHelper{
 
   protected def generateDatasets: Unit = {
     logger.info("generating dataset...")
-    saveDatasetOnDisk(createUrlDataset,createRelationDataset)
-    logger.info("dataset generated with success.")
+    if(createRelationDataset.nonEmpty) {
+      saveDatasetOnDisk(createUrlDataset, createRelationDataset)
+      logger.info("dataset generated with success.")
+    }else{
+      logger.info("Can't create relation dataset because is empty.")
+    }
   }
 }

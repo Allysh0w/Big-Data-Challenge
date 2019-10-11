@@ -34,7 +34,7 @@ trait FileHelper extends LazyLogging {
     relationModel.foreach(createRelationDsCSVFile)
   }
 
-  private def deleteDatasets() = {
+  protected def deleteDatasets() = {
     val datasetUrl = File(Settings.urlDatasetPath)
     val datasetRelation = File(Settings.relationDatasetPath)
 

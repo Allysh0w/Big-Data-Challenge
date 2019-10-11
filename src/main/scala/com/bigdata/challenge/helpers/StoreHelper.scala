@@ -23,7 +23,7 @@ trait StoreHelper extends DatabaseManager {
       .take(1)
   }
 
-  private def selectUrlId(user: UserInfo) = {
+  protected def selectUrlId(user: UserInfo) = {
     sql"select id from url_access WHERE link = ${user.url}"
       .query[Int]
       .to[List]
@@ -45,6 +45,12 @@ trait StoreHelper extends DatabaseManager {
     insertRelationUrlViewed(userId.head, urlId.head).run.transact(transactorManager).unsafeRunSync
     HttpResponse(StatusCodes.OK)
 
+  }
+
+  protected def deleteAllInfoFromDB(): Unit ={
+    sql"TRUNCATE url_relation".update.run.transact(transactorManager).unsafeRunSync()
+    sql"TRUNCATE user_access CASCADE".update.run.transact(transactorManager).unsafeRunSync()
+    sql"TRUNCATE url_access CASCADE".update.run.transact(transactorManager).unsafeRunSync()
   }
 
 
