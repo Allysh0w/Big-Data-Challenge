@@ -15,9 +15,9 @@ alt="Markdown Monster icon"
 style="float: left; margin-right: 10px;" />
 
 A fórmula para se calcular a similaridade dos cossenos é dada por:
-$$
-\displaystyle SimCosseno = \frac{\sqrt{∑ab}}{\sqrt{∑a^2}\sqrt{∑b^2}}
-$$
+<img src="https://neo4j.com/docs/graph-algorithms/current/images/cosine-similarity.png"
+alt="Markdown Monster icon"
+style="float: left; margin-right: 10px;" />
 
 # O Sistema
 ### Aplicação
