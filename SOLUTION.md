@@ -61,7 +61,22 @@ Como podemos ver no exemplo acima, a api retorna as url's que são similares
 ao link: www.think.com
 ```
 
+Com a outra similar encontrada acima:
 
+
+```
+curl http://localhost:8080/www.teste.com.br/similar/
+```
+
+
+```
+[
+  {
+    "url":"www.think.com",
+    "score":1.0
+  }
+]
+```
 ### O algoritmo
 Como já citado anteriormente, o algoritmo implementado para solucionar o problema de recomendação foi a similaridade dos cossenos, o algoritmo possui duas variáveis importantes que são cruciais para efetuar uma boa recomendação.
 - **thresholdScore** => variável responsável por definir o limiar minimo de score.

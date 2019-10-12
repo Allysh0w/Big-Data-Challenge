@@ -8,6 +8,7 @@ import com.bigdata.challenge.Main.computeSimilarity
 import com.bigdata.challenge.helpers.{DatasetHelper, StoreHelper}
 import com.bigdata.challenge.model.Contracts.{User, UserInfo}
 import com.bigdata.challenge.serializers.UserJsonSupport
+import org.apache.spark.SparkContext
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization.{write, writePretty}
 
@@ -19,6 +20,7 @@ trait RouteDefinition
     with DatasetHelper {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
+  implicit val sc: SparkContext = new SparkContext("local[*]", "bigdata-challenge")
 
   protected def route(implicit system: ActorSystem, mat: ActorMaterializer, ec: ExecutionContext) = {
     ignoreTrailingSlash {

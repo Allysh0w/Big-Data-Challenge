@@ -12,10 +12,10 @@ object SimilarityFunctionsHandler {
 
   val thresholdScore = 0.1
   val thresholdOccurence = 2.0
-  val getLinkNameById: Map[Int, String] = mapUrlNames()
+//  val getLinkNameById: Map[Int, String] = mapUrlNames()
   // Create sparkContext on local machine
-  val sc = new SparkContext("local[*]", "bigdata-challenge")
-  sc.setLogLevel("ERROR")
+//  val sc: SparkContext = new SparkContext("local[*]", "bigdata-challenge")
+  //sc.setLogLevel("ERROR")
 
   type UrlRating = (Int, Double)
   type UserRatingPair = (Int, (UrlRating, UrlRating))
@@ -27,7 +27,7 @@ object SimilarityFunctionsHandler {
 
   type MappedUrlRating = ((Int, Int), RatingPair)
 
-  private def mapUrlNames(): Map[Int, String] = {
+   def mapUrlNames(): Map[Int, String] = {
 
     implicit val codec: Codec = Codec("UTF-8")
     codec.onMalformedInput(CodingErrorAction.REPLACE)

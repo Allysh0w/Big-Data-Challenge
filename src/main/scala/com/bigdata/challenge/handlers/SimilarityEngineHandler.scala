@@ -8,17 +8,21 @@ import com.bigdata.challenge.settings.Settings
 import org.apache.spark._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import SimilarityFunctionsHandler._
 
 import scala.concurrent.{ExecutionContext, Future}
 
+object SimilarityEngineHandler {
+  val getLinkNameById: Map[Int, String] = mapUrlNames()
+}
 
 trait SimilarityEngineHandler {
 
-  import SimilarityFunctionsHandler._
+  import SimilarityEngineHandler.getLinkNameById
 
   def computeSimilarity(urlID: Int)(implicit system: ActorSystem,
                                     mat: ActorMaterializer,
-                                    ec: ExecutionContext): Future[List[SimilarityDocument]] = {
+                                    ec: ExecutionContext, sc: SparkContext): Future[List[SimilarityDocument]] = {
 
 
     val dataRDD: RDD[String] = sc.textFile(Settings.relationDatasetPath).distinct()

@@ -26,7 +26,8 @@ libraryDependencies ++= Seq(
   "org.scala-lang"                  %   "scala-library"       % "2.12.8",
   "org.scala-lang.modules"           %% "scala-xml"         % "1.2.0",
   "org.tpolecat" %% "doobie-core"      % "0.7.0",
-  "org.tpolecat" %% "doobie-postgres"  % "0.7.0"
+  "org.tpolecat" %% "doobie-postgres"  % "0.7.0",
+  "org.scalatest" % "scalatest_2.12" % "3.0.8" % "test"
 
 
 )
