@@ -74,6 +74,8 @@ O armazenamento das informações fornecidas para a API foram guardadas em um ba
 Foram criadas três tabelas para relacionar o usuário com a url, para que fosse possível de construir um dataset válido. A ilustração do relacionamento pode ser vista na imagem a seguir.
 
 ![Screenshot](docs/db_relation.jpg)
+
+
 SQL para criação das tabelas:
 ```
 -- URL table
