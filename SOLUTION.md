@@ -72,11 +72,8 @@ Como já citado anteriormente, o algoritmo implementado para solucionar o proble
 ### Construção dos datasets
 O armazenamento das informações fornecidas para a API foram guardadas em um banco de dados relacional e open source [PostgreSQL](https://www.postgresql.org/).
 Foram criadas três tabelas para relacionar o usuário com a url, para que fosse possível de construir um dataset válido. A ilustração do relacionamento pode ser vista na imagem a seguir.
-```mermaid
-graph LR
-UserDB -- fk_id_user--> R(Tabela De Relacionamento)
-UrlDB -- fk_id_url-->  R
-```
+
+![Screenshot](docs/db_relation.jpg)
 SQL para criação das tabelas:
 ```
 -- URL table
