@@ -61,7 +61,7 @@ Como podemos ver no exemplo acima, a api retorna as url's que são similares
 ao link: www.think.com
 ```
 
-Com a outra similar encontrada acima:
+Com a url similar encontrada acima:
 
 
 ```
