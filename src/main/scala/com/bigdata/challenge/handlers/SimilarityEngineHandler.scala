@@ -58,7 +58,7 @@ trait SimilarityEngineHandler {
                                    urlID: Int): List[SimilarityDocument] = {
 
     for {
-      urlId <- transformedResults.map(x => if (x._2._1 == urlID) x._2._2 else x._2._1)
+      urlId <- transformedResults.map(x => if (x._2._1 == urlID) x._2._2 else x._2._1).filter(x => x != urlID)
       score <- transformedResults.map(x => x._1._1)
     } yield SimilarityDocument(getLinkNameById(urlId), Math.round(score*100.0)/100.0)
   }.toList.distinct
