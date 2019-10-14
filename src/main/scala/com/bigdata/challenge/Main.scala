@@ -24,7 +24,7 @@ object Main
   implicit val mat = ActorMaterializer()
   implicit val ec = system.dispatcher
 
-  startServer(route, Settings.apiHost, Settings.apiPort)
+  startServer(route, Settings.httpHost, Settings.httpPort)
 
   //computeSimilarity(2).map(x => println(write(x)))
 

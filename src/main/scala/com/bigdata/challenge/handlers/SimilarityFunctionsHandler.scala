@@ -10,8 +10,8 @@ import scala.math.sqrt
 
 object SimilarityFunctionsHandler {
 
-  val thresholdScore = 0.1
-  val thresholdOccurence = 2.0
+  val thresholdScore = Settings.thresholdScore
+  val thresholdOccurence = Settings.thresholdOcc
 //  val getLinkNameById: Map[Int, String] = mapUrlNames()
   // Create sparkContext on local machine
 //  val sc: SparkContext = new SparkContext("local[*]", "bigdata-challenge")

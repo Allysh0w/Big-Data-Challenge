@@ -4,6 +4,18 @@ version := "0.1"
 
 scalaVersion := "2.12.8"
 
+mainClass in Compile := Some("com.bigdata.challenge.Main")
+
+dockerBaseImage := "adoptopenjdk/openjdk8:latest"
+
+packageName in Docker := "javac7/big-data-challenge"
+maintainer in Docker := "javac7"
+packageSummary := "Big Data Challenge"
+packageDescription := "Big Data Challenge"
+
+publishArtifact in Test := true
+
+
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
 

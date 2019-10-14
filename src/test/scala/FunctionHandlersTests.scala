@@ -1,7 +1,7 @@
 
 import org.scalatest.FlatSpec
 
-class FunctionHandlersTest extends FlatSpec {
+class FunctionHandlersTests extends FlatSpec {
 
   import com.bigdata.challenge.handlers.SimilarityFunctionsHandler._
 
