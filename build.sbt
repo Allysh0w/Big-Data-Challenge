@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.docker._
+
 name := "bigdata-challenge"
 
 version := "0.1"
@@ -46,3 +48,39 @@ libraryDependencies ++= Seq(
 dependencyOverrides ++= Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7"
 )
+
+
+
+dockerCommands ++= Seq(
+  Cmd("USER", "root"),
+  // setting the run script executable
+  Cmd("RUN",
+    "apt-get update"
+  ),
+  Cmd("RUN",
+    "apt-get install -y curl"
+  ),
+  Cmd("RUN",
+    "curl -L -o sbt-1.3.0.deb https://dl.bintray.com/sbt/debian/sbt-1.3.0.deb"
+  ),
+  Cmd("RUN",
+    "dpkg -i sbt-1.3.0.deb"
+  ),
+  Cmd("RUN",
+    "rm sbt-1.3.0.deb"
+  ),
+  Cmd("RUN",
+    "apt-get update"
+  ),
+  Cmd("RUN",
+    "apt-get install -y sbt git"
+  ),
+  Cmd("RUN",
+    "apt-get clean"
+  ),
+  Cmd("RUN",
+    "apt-get autoclean"
+  )
+)
+  // setting a daemon user
+

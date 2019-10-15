@@ -4,7 +4,7 @@
 Essa é uma aplicação de recomendação de documentos usando a abordagem de [Collaborative filtering](https://en.wikipedia.org/wiki/Collaborative_filtering).
 
 A Filtragem Colaborativa não requer nenhuma informação sobre os itens ou sobre o próprio usuário. A ideia principal por trás da Filtragem colaborativa é que usuários semelhantes compartilham interesses semelhantes, pessoas com interesses semelhantes tendem a gostar de itens semelhantes. Portanto, esses itens são recomendados para um conjunto semelhante de usuários.
-Nesse caso de uso, pretendemos recomendar links. Para isso, segmentaremos uma classificação padrão de links  para encontrar semelhança entre duas urls.  A segmentação de classificação de cada url tem a taxa de 1.0
+Nesse caso de uso, pretendemos recomendar links. Para isso, segmentaremos uma classificação padrão de links  para encontrar semelhança entre duas urls.
 
 # Abordagem
 Partimos da suposição de que se o usuário **A** viu os documentos 1, 2 e 3; o **B** viu 1, 2 e 5; e o **C** viu 1, 2 e 4, a API deve dizer que o documento 1 é similar ao 2.
@@ -157,5 +157,5 @@ Podemos perceber que é um conjunto de fatores que poderia melhorar um sistema d
 >Kafka é uma poderosa plataforma de streaming de dados para lidar com feeds de dados em tempo real.  O kafka seria usado para que fosse possível publicar eventos dos quais poderiam ser consumidos, transformados e enriquecidos por algum outro processo, afim de gerar informações através dos dados.
 
 2. Gravação das informações no [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html).
->Bons sistemas de recomendação trabalham com uma grande massa de dados para que a recomendação seja a mais precisa possível. Análises teriam que ser feit em cima dos dados de feedback do sistema de recomendação para estudar os resultados e tirar insights.
+>Bons sistemas de recomendação trabalham com uma grande massa de dados para que a recomendação seja a mais precisa possível. Análises teriam que ser feitas em cima dos dados de feedback do sistema de recomendação para estudar os resultados e tirar insights.
 Então porque não usar um banco que carrega o poderoso [Apache Lucene](https://lucene.apache.org/) em seu núcleo?  Grande quantidade de informações teriam que ser persistida e o Elasticsearch funcionaria perfeitamente para esse cenário.

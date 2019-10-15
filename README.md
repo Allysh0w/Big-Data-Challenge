@@ -1,4 +1,11 @@
 # Big Data Challenge
+
+Setup application:
+
+```
+make setup 
+```
+
 Run application:
 ```
 make run
@@ -7,6 +14,7 @@ Run tests
 ```
 make test
 ```
+Requisitos: versão mais recente do [Docker](https://docs.docker.com/) e [Docker-compose](https://docs.docker.com/compose/).
 
 Imagem docker gerada usando  [SBT Native Packager](https://www.scala-sbt.org/sbt-native-packager/).
 

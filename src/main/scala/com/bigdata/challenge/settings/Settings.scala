@@ -14,8 +14,8 @@ trait Settings {
   val httpHost: String = nodeConfig.getString("httpHost")
   val httpPort: Int = nodeConfig.getInt("httpPort")
 
-  val relationDatasetPath = "datasets/relationDataset.csv"
-  val urlDatasetPath = "datasets/urlsDataset.csv"
+  val relationDatasetPath = "/opt/docker/bin/datasets/relationDataset.csv"
+  val urlDatasetPath = "/opt/docker/bin/datasets/urlsDataset.csv"
 
   val thresholdOcc = nodeConfig.getDouble("thresholdOcc")
   val thresholdScore = nodeConfig.getDouble("thresholdScore")

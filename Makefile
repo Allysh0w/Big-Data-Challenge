@@ -1,11 +1,11 @@
 run:
+	mkdir -p /home/datasets/ && \
+	sudo chmod 777 /home/datasets/ && \
 	docker-compose -f postgres-compose.yml up -d && \
-	docker pull javac7/big-data-challenge:0.1 && \
 	docker run -d --name big-data-challenge --restart=always \
-	-v `pwd`/datasets/:/datasets \
+	-v /home/datasets/:/opt/docker/bin/datasets/ \
 	--net="host" javac7/big-data-challenge:0.1
 setup:
-	echo "docker image ready to run"
-
+	docker pull javac7/big-data-challenge:0.1
 test:
-	echo "missing docker run tests"
+	docker exec -it big-data-challenge bash -c "sbt test"
