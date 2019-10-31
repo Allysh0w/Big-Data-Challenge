@@ -1,4 +1,4 @@
-# Documentação big data challenge globo.com
+# Documentação big data challenge
 
 # Introdução
 Essa é uma aplicação de recomendação de documentos usando a abordagem de [Collaborative filtering](https://en.wikipedia.org/wiki/Collaborative_filtering).
