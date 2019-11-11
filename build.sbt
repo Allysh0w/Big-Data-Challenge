@@ -17,6 +17,16 @@ packageDescription := "Big Data Challenge"
 
 publishArtifact in Test := true
 
+// adds the test jar to mappings
+mappings in Universal += {
+  // generates the test package
+  val testjar = (packageBin in Test).value
+  // maps this file to your lib folder in your output package
+  testjar -> s"lib/${testjar.getName}"
+}
+
+scriptClasspath += (packageBin in Test).value.getName
+
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(DockerPlugin)
@@ -83,4 +93,3 @@ dockerCommands ++= Seq(
   )
 )
   // setting a daemon user
-
